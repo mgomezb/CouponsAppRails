@@ -19,7 +19,7 @@
 
 
 window.handler = {};
-window.markers = [];
+window.marker = undefined;
 
 $(function (){
 	handler = Gmaps.build('Google');

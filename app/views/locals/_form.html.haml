@@ -1,4 +1,4 @@
-= simple_form_for @local, html:{class: 'form-inline'} do |f|
+= simple_form_for @local, html:{class: 'col-sm-6 col-sm-offset-3 form-horizontal'} do |f|
   - if @local.errors.any?
     #error_explanation
       %h2= "#{pluralize(@local.errors.count, "error")} prohibited this local from being saved:"
@@ -9,7 +9,7 @@
   = f.input :name
   = f.input :radius
   = f.input :address
-  = f.button :submit, 'Guardar Local'
 
-  %div{ style: 'width: 800px; margin-top: 30px; text-align: center;'}
-    %div{ id: 'map', style: 'width: 800px; height: 400px;'}
+  %div{ id: 'map', style: 'width: 100%; height: 250px; margin-bottom: 20px'}
+
+  = f.button :submit, 'Guardar Local'

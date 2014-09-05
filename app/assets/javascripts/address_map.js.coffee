@@ -12,7 +12,10 @@ $ ->
       $('#local_latitude').val  point.geometry.location.lat()
       $('#local_longitude').val point.geometry.location.lng()
 
-    # Gmaps.map.HandleDragend = (pos) ->
+
+##################################################################################################
+
+    # handler.HandleDragend = (pos) ->
     #   geocoder = new google.maps.Geocoder()
     #   geocoder.geocode
     #     latLng: pos
@@ -63,23 +66,17 @@ $ ->
     #       $('#local_address').val null
     #       alert "No se pudo encontrar una dirección para esta ubicación."
 
-    # Gmaps.map.callback = ->
-    #   if Gmaps.map.markers[0]
-    #     google.maps.event.addListener Gmaps.map.markers[0].serviceObject, "dragend", ->
-    #       Gmaps.map.HandleDragend @getPosition()
-    #   if Gmaps.map.circles[0]
-    #     google.maps.event.addListener Gmaps.map.circles[0].serviceObject, "dragend", ->
-    #       console.log @getPosition()
-    #     google.maps.event.addListener Gmaps.map.circles[0].serviceObject, "radius_changed", ->
-    #       console.log @getRadius()
+    # window.handler.callback = ->
+    #   if window.marker
+    #     google.maps.event.addListener window.markers.serviceObject, "dragend", ->
+    #       handler.HandleDragend @getPosition()
 
-    # address = $('#local_address').val()
-
+##########################################################################################################
     window.filter_address = ->
 
       address = $('#local_address').val()
 
-      return false if address.length < 4
+      #return false if address.length < 4
 
       geocoder = new google.maps.Geocoder()
       geocoder.geocode
@@ -92,12 +89,13 @@ $ ->
               $('#local_address').val point.formatted_address
             set_coords point
 
-            handler.removeMarkers(window.markers) if window.markers[0];
+            handler.removeMarker(window.marker) if window.marker;
 
-            window.markers = handler.addMarker({lat: point.geometry.location.lat(), lng: point.geometry.location.lng()});
+            window.marker = handler.addMarker({lat: point.geometry.location.lat(), lng: point.geometry.location.lng()});
+
             handler.getMap().setCenter point.geometry.location
-            handler.getMap().setZoom(14)
-            #handler.bounds.extendWith(markers);
+            handler.getMap().setZoom(16)
+            #handler.callback();
 
     $('#local_address').on 'keyup', filter_address
 

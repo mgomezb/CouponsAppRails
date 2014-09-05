@@ -1,5 +1,5 @@
 class Local < ActiveRecord::Base
-	
+
 	has_many :users, through: :user_locals
 	has_many :user_locals
 	has_many :beacons
@@ -8,5 +8,6 @@ class Local < ActiveRecord::Base
 
 	geocoded_by :address
 	after_validation :geocode
-	validates :name, presence: true
+	validates :name, :address , :radius, presence: true
+
 end

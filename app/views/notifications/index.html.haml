@@ -1,0 +1,31 @@
+%h1 Listing notifications
+
+%table
+  %tr
+    %th Title
+    %th Message
+    %th Init date
+    %th End date
+    %th Proximity trigger range
+    %th Store
+    %th Beacon
+    %th
+    %th
+    %th
+
+  - @notifications.each do |notification|
+    %tr
+      %td= notification.title
+      %td= notification.message
+      %td= notification.init_date
+      %td= notification.end_date
+      %td= notification.proximity_trigger_range
+      %td= notification.store
+      %td= notification.beacon
+      %td= link_to 'Show', notification
+      %td= link_to 'Edit', edit_notification_path(notification)
+      %td= link_to 'Destroy', notification, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Notification', new_notification_path

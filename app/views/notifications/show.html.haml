@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @notification.title
+%p
+  %b Message:
+  = @notification.message
+%p
+  %b Init date:
+  = @notification.init_date
+%p
+  %b End date:
+  = @notification.end_date
+%p
+  %b Proximity trigger range:
+  = @notification.proximity_trigger_range
+%p
+  %b Store:
+  = @notification.store
+%p
+  %b Beacon:
+  = @notification.beacon
+
+= link_to 'Edit', edit_notification_path(@notification)
+\|
+= link_to 'Back', notifications_path

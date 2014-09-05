@@ -1,0 +1,39 @@
+%h1 Listing coupons
+
+%table
+  %tr
+    %th Title
+    %th Message
+    %th Init date
+    %th End date
+    %th Access level
+    %th Legal
+    %th Proximity trigger range
+    %th Image
+    %th Code
+    %th Store
+    %th Beacon
+    %th
+    %th
+    %th
+
+  - @coupons.each do |coupon|
+    %tr
+      %td= coupon.title
+      %td= coupon.message
+      %td= coupon.init_date
+      %td= coupon.end_date
+      %td= coupon.access_level
+      %td= coupon.legal
+      %td= coupon.proximity_trigger_range
+      %td= coupon.image
+      %td= coupon.code
+      %td= coupon.store
+      %td= coupon.beacon
+      %td= link_to 'Show', coupon
+      %td= link_to 'Edit', edit_coupon_path(coupon)
+      %td= link_to 'Destroy', coupon, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Coupon', new_coupon_path

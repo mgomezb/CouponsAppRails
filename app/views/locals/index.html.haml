@@ -1,0 +1,18 @@
+.col-sm-12
+  %h1 Tus locales
+  =current_user.rut
+
+  %table.table
+    %tr
+      %th Local
+
+    - @locals.each do |local|
+      %tr
+        %td= link_to local.name, local
+
+        /*%td= link_to 'Edit', edit_local_path(local)
+        /*%td= link_to 'Destroy', local, :method => :delete, :data => { :confirm => 'Are you sure?' } 
+
+  %br
+
+  = link_to 'New Local', new_local_path, class: 'btn btn-success'

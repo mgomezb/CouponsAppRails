@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Major:
+  = @beacon.major
+%p
+  %b Minor:
+  = @beacon.minor
+%p
+  %b Proximity uuid:
+  = @beacon.proximity_uuid
+%p
+  %b Description:
+  = @beacon.description
+%p
+  %b Local:
+  = @beacon.local
+
+= link_to 'Edit', edit_beacon_path(@beacon)
+\|
+= link_to 'Back', beacons_path

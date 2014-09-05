@@ -1,0 +1,25 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+
+  #encoding: utf-8
+development:
+  adapter: postgresql
+  database: coupons
+  pool: 5
+  username: MGomez
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: coupons
+  pool: 5
+  username: MGomez
+  password:
+
+# Production settings are not required on Heroku, yet
+# may be required by other hosts.

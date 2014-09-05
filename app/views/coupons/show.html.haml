@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @coupon.title
+%p
+  %b Message:
+  = @coupon.message
+%p
+  %b Init date:
+  = @coupon.init_date
+%p
+  %b End date:
+  = @coupon.end_date
+%p
+  %b Access level:
+  = @coupon.access_level
+%p
+  %b Legal:
+  = @coupon.legal
+%p
+  %b Proximity trigger range:
+  = @coupon.proximity_trigger_range
+%p
+  %b Image:
+  = @coupon.image
+%p
+  %b Code:
+  = @coupon.code
+%p
+  %b Store:
+  = @coupon.store
+%p
+  %b Beacon:
+  = @coupon.beacon
+
+= link_to 'Edit', edit_coupon_path(@coupon)
+\|
+= link_to 'Back', coupons_path

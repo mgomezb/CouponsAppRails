@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @local.name
+%p
+  %b Latitude:
+  = @local.latitude
+%p
+  %b Longitude:
+  = @local.longitude
+%p
+  %b Radius:
+  = @local.radius
+%p
+  %b Address:
+  = @local.address
+
+= link_to 'Edit', edit_local_path(@local), class: 'btn btn-warning'
+= link_to 'Destroy', @local, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+

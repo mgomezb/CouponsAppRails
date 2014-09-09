@@ -15,19 +15,3 @@
 //= require underscore
 //= require gmaps/google
 //= require address_map
-//= require_self
-
-
-window.handler = {};
-window.marker = undefined;
-
-$(function (){
-	handler = Gmaps.build('Google');
-	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-	  handler.getMap().setZoom(6);
-	  handler.getMap().setCenter(new google.maps.LatLng(-33.437583, -70.650505));
-	});
-
-});
-
-//= require_tree .

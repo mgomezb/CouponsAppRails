@@ -1,21 +1,14 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b Nombre:
   = @local.name
 %p
-  %b Latitude:
-  = @local.latitude
-%p
-  %b Longitude:
-  = @local.longitude
-%p
-  %b Radius:
-  = @local.radius
-%p
-  %b Address:
+  %b Dirección:
   = @local.address
 
-= link_to 'Edit', edit_local_path(@local), class: 'btn btn-warning'
-= link_to 'Destroy', @local, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+%span{id: 'info', data: {latitude: @local.latitude, longitude: @local.longitude, radius: @local.radius}}
+%div{ id: 'map', style: 'width: 100%; height: 400px; margin-bottom: 30px'}
 
+= link_to 'Editar', edit_local_path(@local), class: 'btn btn-warning'
+= link_to 'Eliminar', @local, :method => :delete, :data => { :confirm => '¿Estás seguro que deseas eliminar?' }, class: 'btn btn-danger'

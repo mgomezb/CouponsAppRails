@@ -29,6 +29,7 @@ class StoresController < ApplicationController
 
     respond_to do |format|
       if @store.save
+        LocalStore.create({local_id:current_local.id, store_:@store.id})
         format.html { redirect_to @store, notice: 'Store was successfully created.' }
         format.json { render :show, status: :created, location: @store }
       else

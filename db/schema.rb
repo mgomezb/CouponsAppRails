@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831210441) do
+ActiveRecord::Schema.define(version: 20140909023524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20140831210441) do
 
   add_index "coupons", ["beacon_id"], name: "index_coupons_on_beacon_id", using: :btree
   add_index "coupons", ["store_id"], name: "index_coupons_on_store_id", using: :btree
+
+  create_table "local_stores", force: true do |t|
+    t.integer  "local_id"
+    t.integer  "store_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locals", force: true do |t|
     t.string   "name"

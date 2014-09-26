@@ -5,8 +5,8 @@
   = @store.name
 %p
   %b Local:
-  = @store.local
+  = @store.local.name
 
-= link_to 'Edit', edit_store_path(@store)
+= link_to 'Edit', edit_local_store_path(@local, @store)
 \|
-= link_to 'Back', stores_path
+= link_to 'Back', request.referer

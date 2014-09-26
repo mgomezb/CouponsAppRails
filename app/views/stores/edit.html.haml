@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @store
+= link_to 'Show', local_store_path(@local, @store)
 \|
-= link_to 'Back', stores_path
+= link_to 'Back', request.referer

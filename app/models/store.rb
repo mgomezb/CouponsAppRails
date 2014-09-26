@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  belongs_to :local, through: :local_stores
+  belongs_to :local
 
   has_many :coupons
   has_many :notifications

@@ -1,10 +1,12 @@
 class BeaconsController < ApplicationController
+  before_action :set_local
   before_action :set_beacon, only: [:show, :edit, :update, :destroy]
 
   # GET /beacons
   # GET /beacons.json
   def index
     @beacons = Beacon.all
+    @beacons = @local.beacons.build
   end
 
   # GET /beacons/1
@@ -14,7 +16,7 @@ class BeaconsController < ApplicationController
 
   # GET /beacons/new
   def new
-    @beacon = Beacon.new
+    @beacon = @local.beacons.build
   end
 
   # GET /beacons/1/edit
@@ -28,7 +30,7 @@ class BeaconsController < ApplicationController
 
     respond_to do |format|
       if @beacon.save
-        format.html { redirect_to @beacon, notice: 'Beacon was successfully created.' }
+        format.html { redirect_to local_beacons_path, notice: 'Beacon was successfully created.' }
         format.json { render :show, status: :created, location: @beacon }
       else
         format.html { render :new }
@@ -64,11 +66,15 @@ class BeaconsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_beacon
-      @beacon = Beacon.find(params[:id])
+      @beacon = @local.beacons.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beacon_params
       params.require(:beacon).permit(:major, :minor, :proximity_uuid, :description, :local_id)
+    end
+
+    def set_local
+      @local = Local.find(params[:local_id])
     end
 end

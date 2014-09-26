@@ -3,13 +3,12 @@ Rails.application.routes.draw do
 
   resources :coupons
 
-  resources :beacons
+  resources :locals do
+    resources :stores
+    resources :beacons
+  end
 
-  resources :stores
-
-  resources :locals
-
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

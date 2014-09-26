@@ -1,9 +1,8 @@
-%h1 Listing stores
+%h1 Lista tiendas 
 
-%table
+%table.table
   %tr
     %th Name
-    %th Local
     %th
     %th
     %th
@@ -11,11 +10,21 @@
   - @stores.each do |store|
     %tr
       %td= store.name
-      %td= store.local
-      %td= link_to 'Show', store
-      %td= link_to 'Edit', edit_store_path(store)
-      %td= link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Show', local_store_path(@local, store)
+      %td= link_to 'Edit', edit_local_store_path(@local, store)
+      %td= link_to 'Destroy', local_store_path(@local, store), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Store', new_store_path
+= link_to 'New Store', new_local_store_path, remote: true
+
+#newStoreModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newStoreModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Crear tienda
+      .modal-body
+        = render 'stores/form'

@@ -24,7 +24,8 @@ body{
  	margin: 0;
 }
 body.static{
-	background:url(/assets/background.jpg) no-repeat;
+	/*background:url(http://lorempixel.com/1920/1080/fashion/) no-repeat;*/
+	background: url('background.png');
  	background-size: cover;
 }
 html{
@@ -32,16 +33,24 @@ html{
  	height: 100%;
  	margin: 0;
 }
-
-.login{
-	position: absolute;
-	top: 50%;
-	margin-top: -188px;
-	left: 50%;
-	margin-left: -200px;
-	width: 400px;
+.register{
+	margin-top: 30px;
 }
-/*.containerLocals{
-	background: rgba(255,255,255,0.75);
-	padding: 20px;
-}*/
+.login{
+	position: relative;
+	margin: 50px auto 0;
+	display: block;
+	max-width: 300px;
+	width: 90%;
+}
+@media only screen and (min-width : 768px) {
+	.login{
+		width: 400px;
+		max-width: inherit;
+		position: absolute;
+		top: 50%;
+		margin-top: -188px;
+		left: 50%;
+		margin-left: -200px;
+	}
+}

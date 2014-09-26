@@ -4,8 +4,8 @@
 
 		<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 	      <%= f.input :email, required: true, autofocus: true %>
-	      <%= f.input :password, required: true %>
-	      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+	      <%= f.input :password, required: true , :label => "Contraseña"%>
+	      <%= f.input :remember_me, :label => "Recordar datos", as: :boolean if devise_mapping.rememberable? %>
 
 	      <%= f.button :submit, "Iniciar sesión" %>
 		<% end %>

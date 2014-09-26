@@ -1,4 +1,4 @@
-= form_for @beacon do |f|
+= simple_form_for [@local, @beacon] do |f|
   - if @beacon.errors.any?
     #error_explanation
       %h2= "#{pluralize(@beacon.errors.count, "error")} prohibited this beacon from being saved:"
@@ -7,19 +7,14 @@
           %li= msg
 
   .field
-    = f.label :major
-    = f.number_field :major
+    = f.input :major
   .field
-    = f.label :minor
-    = f.number_field :minor
+    = f.input :minor
   .field
-    = f.label :proximity_uuid
-    = f.text_field :proximity_uuid
+    = f.input :proximity_uuid
   .field
-    = f.label :description
-    = f.text_field :description
+    = f.input :description
   .field
-    = f.label :local
-    = f.text_field :local
+    = f.input :local, input_html: {class: 'hidden'}
   .actions
     = f.submit 'Save'

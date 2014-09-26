@@ -1,11 +1,12 @@
 class StoresController < ApplicationController
-  before_action :require_login
+  before_action :set_local
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
   # GET /stores
   # GET /stores.json
   def index
     @stores = Store.all
+    @store = @local.stores.build
   end
 
   # GET /stores/1
@@ -15,7 +16,7 @@ class StoresController < ApplicationController
 
   # GET /stores/new
   def new
-    @store = Store.new
+    @store = @local.stores.build
   end
 
   # GET /stores/1/edit
@@ -29,8 +30,7 @@ class StoresController < ApplicationController
 
     respond_to do |format|
       if @store.save
-        LocalStore.create({local_id:current_local.id, store_:@store.id})
-        format.html { redirect_to @store, notice: 'Store was successfully created.' }
+        format.html { redirect_to local_stores_path, notice: 'Store was successfully created.' }
         format.json { render :show, status: :created, location: @store }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class StoresController < ApplicationController
   def update
     respond_to do |format|
       if @store.update(store_params)
-        format.html { redirect_to @store, notice: 'Store was successfully updated.' }
+        format.html { redirect_to local_stores_path, notice: 'Store was successfully updated.' }
         format.json { render :show, status: :ok, location: @store }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class StoresController < ApplicationController
   def destroy
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
+      format.html { redirect_to local_stores_path, notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,11 +66,15 @@ class StoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store
-      @store = Store.find(params[:id])
+      @store = @local.stores.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
       params.require(:store).permit(:name, :local_id)
+    end
+
+    def set_local
+      @local = Local.find(params[:local_id])
     end
 end

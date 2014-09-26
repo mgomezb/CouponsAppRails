@@ -1,6 +1,6 @@
 %h1 Listing beacons
 
-%table
+%table.table
   %tr
     %th Major
     %th Minor
@@ -18,9 +18,9 @@
       %td= beacon.proximity_uuid
       %td= beacon.description
       %td= beacon.local
-      %td= link_to 'Show', beacon
-      %td= link_to 'Edit', edit_beacon_path(beacon)
-      %td= link_to 'Destroy', beacon, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Show', local_beacon_path(@local, beacon)
+      %td= link_to 'Edit', edit_local_beacon_path(@local, beacon)
+      %td= link_to 'Destroy', local_beacon_path(@local, beacon), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

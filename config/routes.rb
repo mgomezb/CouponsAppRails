@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :notifications
 
-  resources :coupons
-
   resources :locals do
-    resources :stores
     resources :beacons
+    resources :stores do
+      resources :coupons
+    end
   end
 
   devise_for :users, :controllers => { registrations: 'registrations' }

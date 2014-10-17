@@ -4,7 +4,7 @@ class LocalsController < ApplicationController
   # GET /locals
   # GET /locals.json
   def index
-    @locals = current_user.locals
+    @locals = current_user.locals.order :name
   end
 
   # GET /locals/1

@@ -28,12 +28,12 @@
       %td= coupon.proximity_trigger_range
       %td= coupon.image
       %td= coupon.code
-      %td= coupon.store
+      %td= coupon.store.name
       %td= coupon.beacon
-      %td= link_to 'Show', coupon
-      %td= link_to 'Edit', edit_coupon_path(coupon)
-      %td= link_to 'Destroy', coupon, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Show', local_store_coupon_path(@local, @store, coupon)
+      %td= link_to 'Edit', edit_local_store_coupon_path(@local, @store, coupon)
+      %td= link_to 'Destroy', local_store_coupon_path(@local, @store, coupon), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Coupon', new_coupon_path
+= link_to 'New Coupon', new_local_store_coupon_path

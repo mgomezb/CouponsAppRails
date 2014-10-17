@@ -1,10 +1,13 @@
 class CouponsController < ApplicationController
+  before_action :set_local
+  before_action :set_store
   before_action :set_coupon, only: [:show, :edit, :update, :destroy]
 
   # GET /coupons
   # GET /coupons.json
   def index
-    @coupons = Coupon.all
+    @coupons = @store.coupons.order :id
+    @coupon = @store.coupons.build
   end
 
   # GET /coupons/1
@@ -14,7 +17,7 @@ class CouponsController < ApplicationController
 
   # GET /coupons/new
   def new
-    @coupon = Coupon.new
+    @coupon = @store.coupons.build
   end
 
   # GET /coupons/1/edit
@@ -24,11 +27,15 @@ class CouponsController < ApplicationController
   # POST /coupons
   # POST /coupons.json
   def create
-    @coupon = Coupon.new(coupon_params)
 
+    #puts coupon_params.inspect
+
+    @coupon = Coupon.new(coupon_params)
+    @coupon.store_id = @store.id
     respond_to do |format|
-      if @coupon.save
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully created.' }
+      if @coupon.valid?
+        @coupon.save
+        format.html { redirect_to @store, notice: 'Coupon was successfully created.' }
         format.json { render :show, status: :created, location: @coupon }
       else
         format.html { render :new }
@@ -42,7 +49,7 @@ class CouponsController < ApplicationController
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully updated.' }
+        format.html { redirect_to local_store_coupons_path, notice: 'Coupon was successfully updated.' }
         format.json { render :show, status: :ok, location: @coupon }
       else
         format.html { render :edit }
@@ -56,7 +63,7 @@ class CouponsController < ApplicationController
   def destroy
     @coupon.destroy
     respond_to do |format|
-      format.html { redirect_to coupons_url, notice: 'Coupon was successfully destroyed.' }
+      format.html { redirect_to local_store_coupons_path, notice: 'Coupon was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +71,19 @@ class CouponsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon
-      @coupon = Coupon.find(params[:id])
+      @coupon = @store.coupons.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:title, :message, :init_date, :end_date, :access_level, :legal, :proximity_trigger_range, :image, :code, :store_id, :beacon_id)
+      params.require(:coupon).permit(:title, :message, :init_date, :end_date, :access_level, :legal, :proximity_trigger_range, :image, :code, :store_id)
+    end
+
+    def set_store
+      @store = Store.find(params[:store_id])
+    end
+
+    def set_local
+      @local = Local.find(params[:local_id])
     end
 end

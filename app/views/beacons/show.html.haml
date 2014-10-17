@@ -14,8 +14,8 @@
   = @beacon.description
 %p
   %b Local:
-  = @beacon.local
+  = @beacon.local.name
 
-= link_to 'Edit', edit_beacon_path(@beacon)
+= link_to 'Edit', edit_local_beacon_path(@local, @beacon)
 \|
-= link_to 'Back', beacons_path
+= link_to 'Back', request.referer

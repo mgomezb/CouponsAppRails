@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @beacon
+= link_to 'Show', local_beacon_path(@local, @beacon)
 \|
-= link_to 'Back', beacons_path
+= link_to 'Back', request.referer

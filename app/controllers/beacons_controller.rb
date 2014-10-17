@@ -5,8 +5,8 @@ class BeaconsController < ApplicationController
   # GET /beacons
   # GET /beacons.json
   def index
-    @beacons = Beacon.all
-    @beacons = @local.beacons.build
+    @beacons = @local.beacons.order :id
+    @beacon = @local.beacons.build
   end
 
   # GET /beacons/1
@@ -27,6 +27,7 @@ class BeaconsController < ApplicationController
   # POST /beacons.json
   def create
     @beacon = Beacon.new(beacon_params)
+    @beacon.local =  @local
 
     respond_to do |format|
       if @beacon.save
@@ -44,7 +45,7 @@ class BeaconsController < ApplicationController
   def update
     respond_to do |format|
       if @beacon.update(beacon_params)
-        format.html { redirect_to @beacon, notice: 'Beacon was successfully updated.' }
+        format.html { redirect_to local_beacons_path, notice: 'Beacon was successfully updated.' }
         format.json { render :show, status: :ok, location: @beacon }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class BeaconsController < ApplicationController
   def destroy
     @beacon.destroy
     respond_to do |format|
-      format.html { redirect_to beacons_url, notice: 'Beacon was successfully destroyed.' }
+      format.html { redirect_to local_beacons_path, notice: 'Beacon was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

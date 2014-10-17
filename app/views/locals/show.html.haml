@@ -12,3 +12,6 @@
 
 = link_to 'Editar', edit_local_path(@local), class: 'btn btn-warning'
 = link_to 'Eliminar', @local, :method => :delete, :data => { :confirm => '¿Estás seguro que deseas eliminar?' }, class: 'btn btn-danger'
+
+- content_for :address_map do
+  = javascript_include_tag 'address_map'

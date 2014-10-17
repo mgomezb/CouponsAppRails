@@ -1,4 +1,4 @@
-= form_for @coupon do |f|
+= simple_form_for [@local, @store, @coupon] do |f|
   - if @coupon.errors.any?
     #error_explanation
       %h2= "#{pluralize(@coupon.errors.count, "error")} prohibited this coupon from being saved:"
@@ -6,38 +6,24 @@
         - @coupon.errors.full_messages.each do |msg|
           %li= msg
 
+
   .field
-    = f.label :title
-    = f.text_field :title
+    = f.input :image
   .field
-    = f.label :message
-    = f.text_field :message
+    = f.input :title
   .field
-    = f.label :init_date
-    = f.text_field :init_date
+    = f.input :message
   .field
-    = f.label :end_date
-    = f.text_field :end_date
+    = f.input :legal
   .field
-    = f.label :access_level
-    = f.text_field :access_level
+    = f.input :init_date, as: :string, input_html: {class: 'datetimepicker'}
   .field
-    = f.label :legal
-    = f.text_field :legal
+    = f.input :end_date, as: :string, input_html: {class: 'datetimepicker'}
   .field
-    = f.label :proximity_trigger_range
-    = f.text_field :proximity_trigger_range
+    = f.input :access_level, collection: ['Privado', 'Público'], include_blank: false
   .field
-    = f.label :image
-    = f.text_field :image
+    = f.input :proximity_trigger_range, collection: [['Lejos', '3'], ['Cerca', '2'], ['Muy Cerca', '1']], include_blank: false
   .field
-    = f.label :code
-    = f.text_field :code
-  .field
-    = f.label :store
-    = f.text_field :store
-  .field
-    = f.label :beacon
-    = f.text_field :beacon
+    = f.input :code
   .actions
-    = f.submit 'Save'
+    = f.button :submit, 'Crear Cupón', class: 'btn btn-success'

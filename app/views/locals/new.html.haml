@@ -2,3 +2,6 @@
 = render 'form'
 
 = link_to 'Volver', locals_path
+
+- content_for :address_map do
+  = javascript_include_tag 'address_map'

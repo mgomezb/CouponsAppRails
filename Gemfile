@@ -34,7 +34,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise_invitable'
 gem 'simple_token_authentication'
-gem 'paperclip', '~> 3.0'
+gem 'paperclip', '~> 4.2.0'
 gem 'geocoder'
 
 gem 'rabl'
@@ -43,7 +43,8 @@ gem 'gmaps4rails', '~> 2.1.2'
 
 gem 'underscore-rails'
 
-
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 
 # Use ActiveModel has_secure_password

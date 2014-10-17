@@ -1,5 +1,8 @@
 %h1 Lista tiendas 
 
+= link_to 'Nueva Tienda', new_local_store_path, remote: true, class: 'btn btn-success'
+%p
+
 %table.table
   %tr
     %th Name
@@ -15,8 +18,6 @@
       %td= link_to 'Destroy', local_store_path(@local, store), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
-= link_to 'New Store', new_local_store_path, remote: true
 
 #newStoreModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newStoreModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog

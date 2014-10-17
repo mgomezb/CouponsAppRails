@@ -1,4 +1,7 @@
-%h1 Listing beacons
+%h1 Lista beacons
+
+= link_to 'Nuevo Beacon', new_local_beacon_path, remote: true, class: 'btn btn-success'
+%p
 
 %table.table
   %tr
@@ -17,11 +20,20 @@
       %td= beacon.minor
       %td= beacon.proximity_uuid
       %td= beacon.description
-      %td= beacon.local
+      %td= beacon.local.name
       %td= link_to 'Show', local_beacon_path(@local, beacon)
       %td= link_to 'Edit', edit_local_beacon_path(@local, beacon)
-      %td= link_to 'Destroy', local_beacon_path(@local, beacon), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Destroy', local_beacon_path(@local, beacon), :method => :delete, :data => { :confirm => '¿Estás seguro de eliminar este beacon?' }
 
 %br
 
-= link_to 'New Beacon', new_beacon_path
+#newBeaconModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newBeaconModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Crear beacon
+      .modal-body
+        = render 'beacons/form'

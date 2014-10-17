@@ -14,4 +14,13 @@
 //= require jquery_ujs
 //= require underscore
 //= require gmaps/google
-//= require address_map
+//= require moment
+//= require bootstrap-datetimepicker
+//= require_self
+
+$(function () {
+  $('.datetimepicker').datetimepicker({
+  	pickTime: true,
+  	format: 'DD-MM-YYYY hh:mm'
+  });
+});

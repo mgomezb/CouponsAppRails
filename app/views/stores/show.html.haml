@@ -1,12 +1,39 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b Tienda
   = @store.name
 %p
   %b Local:
   = @store.local.name
 
-= link_to 'Edit', edit_local_store_path(@local, @store)
-\|
-= link_to 'Back', request.referer
+
+
+%h1 Cupones
+
+= link_to 'Nuevo Coupon', new_local_store_coupon_path(@local, @store), class: 'btn btn-success'
+%p
+
+%table.table
+  %tr
+    %th Imagen
+    %th Título
+    %th Desde
+    %th Hasta
+    %th Tipo
+    %th Proximidad
+    %th Code
+    %th
+    %th
+
+  - @store.coupons.each do |coupon|
+    %tr
+      %td= image_tag coupon.image.url, style:"width:250px"
+      %td= coupon.title
+      %td= l coupon.init_date, format: :long
+      %td= l coupon.end_date, format: :long
+      %td= coupon.access_level
+      %td= coupon.proximity_trigger_range
+      %td= coupon.code
+      %td= link_to 'Editar', edit_local_store_coupon_path(@local, @store, coupon)
+      %td= link_to 'Eliminar', local_store_coupon_path(@local, @store, coupon), :method => :delete, :data => { :confirm => 'Are you sure?' }

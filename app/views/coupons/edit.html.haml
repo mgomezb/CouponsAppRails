@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @coupon
+= link_to 'Show', local_store_coupon_path 
 \|
-= link_to 'Back', coupons_path
+= link_to 'Back', request.referer

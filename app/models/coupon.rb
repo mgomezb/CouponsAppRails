@@ -5,7 +5,7 @@ class Coupon < ActiveRecord::Base
   validate :valid_time_range
 
   def valid_time_range
-  	if self.init_date.present? && self.end_date && self.init_date > self.end_date
+  	if self.init_date.present? && self.end_date.present? && self.init_date > self.end_date
   		self.errors.add :end_date , 'Debe ser mayor o igual a la fecha de inicio'
   	end
   end

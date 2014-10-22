@@ -35,7 +35,7 @@ class CouponsController < ApplicationController
     respond_to do |format|
       if @coupon.valid?
         @coupon.save
-        format.html { redirect_to @store, notice: 'Coupon was successfully created.' }
+        format.html { redirect_to local_store_path(@local, @store) , notice: 'Coupon was successfully created.' }
         format.json { render :show, status: :created, location: @coupon }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class CouponsController < ApplicationController
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
-        format.html { redirect_to local_store_coupons_path, notice: 'Coupon was successfully updated.' }
+        format.html { redirect_to local_store_path(@local, @store), notice: 'Coupon was successfully updated.' }
         format.json { render :show, status: :ok, location: @coupon }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class CouponsController < ApplicationController
   def destroy
     @coupon.destroy
     respond_to do |format|
-      format.html { redirect_to local_store_coupons_path, notice: 'Coupon was successfully destroyed.' }
+      format.html { redirect_to local_store_path(@local, @store), notice: 'Coupon was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

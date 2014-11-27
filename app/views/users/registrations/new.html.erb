@@ -12,6 +12,7 @@
     <%= f.input :password_confirmation, required: true %>
     <%= f.input :gender, required: true%>
     <%= f.input :address, required: true %>
+    <%= f.input :user_type, as: :hidden , value: 'web'%>
   </div>
 
   <div class="form-actions">

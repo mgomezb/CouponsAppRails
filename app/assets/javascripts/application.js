@@ -16,6 +16,7 @@
 //= require gmaps/google
 //= require moment
 //= require bootstrap-datetimepicker
+//= require user_locals
 //= require_self
 
 $(function () {

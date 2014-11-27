@@ -1,4 +1,4 @@
-%h1 Lista tiendas 
+%h2 Tiendas #{@local.name}
 
 = link_to 'Nueva Tienda', new_local_store_path, remote: true, class: 'btn btn-success'
 %p
@@ -12,10 +12,9 @@
 
   - @stores.each do |store|
     %tr
-      %td= store.name
-      %td= link_to 'Show', local_store_path(@local, store)
-      %td= link_to 'Edit', edit_local_store_path(@local, store)
-      %td= link_to 'Destroy', local_store_path(@local, store), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to store.name, local_store_path(@local, store)
+      %td= link_to 'Editar', edit_local_store_path(@local, store)
+      %td= link_to 'Eliminar', local_store_path(@local, store), :method => :delete, :data => { :confirm => '¿Estás seguro?' }
 
 %br
 

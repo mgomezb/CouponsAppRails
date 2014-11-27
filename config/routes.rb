@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     resources :stores do
       resources :coupons
     end
+
+    resources :users
+
+    member do
+      put 'add_user_to_local', as: 'add_user_to'
+      put 'remove_user_from_local', as: 'remove_user_from'
+    end
   end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -75,7 +82,18 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :coupons, only: [:index]
+      devise_scope :user do
+        post 'registrations' => 'registrations#create', :as => 'register'
+        post 'sessions' => 'sessions#create', :as => 'login'
+        delete 'sessions' => 'sessions#destroy', :as => 'logout'
+      end
+
+      resources :coupons, only: [:index] do
+        member do
+          put 'claim_coupon'
+        end
+      end
     end
   end
+
 end

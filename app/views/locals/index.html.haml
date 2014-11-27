@@ -1,7 +1,7 @@
 .col-sm-12
   %h1 Locales
-
-  = link_to 'Nuevo Local', new_local_path, class: 'btn btn-success'
+  -if current_user.user_type == 'admin'
+    = link_to 'Nuevo Local', new_local_path, class: 'btn btn-success'
 
   %p
 

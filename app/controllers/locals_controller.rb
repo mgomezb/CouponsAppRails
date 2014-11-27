@@ -62,6 +62,37 @@ class LocalsController < ApplicationController
     end
   end
 
+  def add_user_to_local
+    id = params[:user]
+    local = params[:local]
+
+    if local and id
+      user_local = Local.find(local).user_locals.build user_id: id
+      user_local.save
+
+      render status: 200, json: {status: 200}
+    else
+      render status: 406, json: {status: 406}
+    end
+  end
+
+  def remove_user_from_local
+    id = params[:user]
+    local = params[:local]
+
+    if local and id
+      user_local = UserLocal.where({user_id: id, local_id: local}).first
+
+      if user_local and user_local.destroy
+        render status: 200, json: {status: 200}
+      else
+        render status: 406, json: {status: 406}
+      end
+    else
+      render status: 406, json: {status: 406}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_local

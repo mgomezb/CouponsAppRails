@@ -1,0 +1,39 @@
+.text-center
+  #local-id{data: {id: @local.id}}
+  %button.btn.btn-success.add-user <
+  %button.btn.btn-danger.remove-user >
+
+.row
+  .col-sm-6
+    %h2 Usuario #{@local.name}
+
+    %table.table.local-users{data: {url: remove_user_from_local_path(@local)}}
+      %tr
+        %th
+        %th Nombre
+        %th Apellido
+        %th Email
+
+      - @users.each do |user|
+        %tr
+          %td= check_box_tag :user_id, user.id
+          %td= user.name
+          %td= user.last_name
+          %td= user.email
+
+  .col-sm-6
+    %h2 Todos los usuarios
+
+    %table.table.all-users{data: {url: add_user_to_local_path(@local)}}
+      %tr
+        %th
+        %th Nombre
+        %th Apellido
+        %th Email
+
+      - @all_users.each do |user|
+        %tr
+          %td= check_box_tag :user_id, user.id
+          %td= user.name
+          %td= user.last_name
+          %td= user.email

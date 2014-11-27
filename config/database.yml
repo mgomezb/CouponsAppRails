@@ -10,16 +10,16 @@ development:
   adapter: postgresql
   database: coupons
   pool: 5
-  username: MGomez
-  password:
+  username: postgres
+  password: manolo1986
 
 test:
   adapter: postgresql
   encoding: unicode
   database: coupons
   pool: 5
-  username: MGomez
-  password:
+  username: postgres
+  password: manolo1986
 
 # Production settings are not required on Heroku, yet
 # may be required by other hosts.

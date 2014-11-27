@@ -13,6 +13,7 @@
 		    <%= f.input :email, required: true, autofocus: true , :label => "Email"%>
 		    <%= f.input :password, required: true , :label => "Contraseña"%>
 		    <%= f.input :password_confirmation, required: true , :label => "Confirmar Contraseña"%>
+		    <%= f.input :user_type, as: :hidden , input_html: {value: 'web'}%>
 		  </div>
 
 		  <div class="form-actions">

@@ -12,6 +12,16 @@ class BeaconsController < ApplicationController
   # GET /beacons/1
   # GET /beacons/1.json
   def show
+    @stores = @local.stores
+    @coupons = []
+
+    @stores.each do |store|
+      store.coupons.each do |coupon|
+        if coupon.end_date >= Time.new
+          @coupons << coupon
+        end
+      end
+    end
   end
 
   # GET /beacons/new

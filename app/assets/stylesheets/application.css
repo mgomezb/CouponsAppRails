@@ -44,6 +44,10 @@ html{
 	width: 90%;
 }
 
+.input_message{
+	height: 100px;
+}
+
 tr td {
 	vertical-align: bottom !important
 }

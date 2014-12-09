@@ -6,26 +6,39 @@
         - @coupon.errors.full_messages.each do |msg|
           %li= msg
 
+  .row
+    .col-sm-6
+      .field
+        = f.input :title, label: 'Título'
+    .col-sm-6
+      .field
+        = f.input :image, wrapper: :vertical_file_input, label: 'Imagen'
+  .field
+    = f.input :message, label: 'Mensaje', input_html: {rows: 3}
+  .field
+    = f.input :legal, label: 'Términos y condiciones', input_html: {rows: 3}
 
-  .field
-    = f.input :image
-  .field
-    = f.input :title, label: 'Título'
-  .field
-    = f.input :message, label: 'Mensaje'
-  .field
-    = f.input :stock
-  .field
-    = f.input :legal, label: 'Términos y condiciones'
-  .field
-    = f.input :init_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Inicio'
-  .field
-    = f.input :end_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Fin'
-  .field
-    = f.input :access_level, collection: ['Privado', 'Público'], include_blank: false, label: 'Tipo'
-  .field
-    = f.input :proximity_trigger_range, collection: [['Lejos', '3'], ['Cerca', '2'], ['Muy Cerca', '1']], include_blank: false, label: 'Rango de captura'
-  .field
-    = f.input :code, label: 'Código Canje'
+  .row
+    .col-sm-6
+      .field
+        = f.input :init_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Inicio'
+    .col-sm-6
+      .field
+        = f.input :end_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Fin'
+
+  .row
+    .col-sm-3
+      .field
+        = f.input :stock
+    .col-sm-3
+      .field
+        = f.input :access_level, collection: ['Privado', 'Público'], include_blank: false, label: 'Tipo'
+    .col-sm-3
+      .field
+        = f.input :proximity_trigger_range, collection: [['Lejos', '3'], ['Cerca', '2'], ['Muy Cerca', '1']], include_blank: false, label: 'Rango de captura'
+    .col-sm-3
+      .field
+        = f.input :code, label: 'Código Canje'
   .actions
     = f.button :submit, 'Guardar', class: 'btn btn-success'
+

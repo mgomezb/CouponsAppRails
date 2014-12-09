@@ -7,6 +7,10 @@ class LocalsController < ApplicationController
     @locals = current_user.locals.order :name
   end
 
+  def is_worker?
+    current_user.type == 'admin'
+  end
+
   # GET /locals/1
   # GET /locals/1.json
   def show
@@ -14,7 +18,11 @@ class LocalsController < ApplicationController
 
   # GET /locals/new
   def new
-    @local = Local.new
+    if current_user.user_type == 'admin'
+      @local = Local.new
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /locals/1/edit

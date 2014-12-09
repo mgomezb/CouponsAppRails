@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126222952) do
+ActiveRecord::Schema.define(version: 20141128195219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,14 @@ ActiveRecord::Schema.define(version: 20141126222952) do
 
   create_table "coupons", force: true do |t|
     t.string   "title"
-    t.string   "message"
+    t.text     "message"
     t.datetime "init_date"
     t.datetime "end_date"
     t.string   "access_level"
-    t.string   "legal"
+    t.text     "legal"
     t.integer  "proximity_trigger_range"
     t.string   "code"
     t.integer  "store_id"
-    t.integer  "beacon_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -48,7 +47,6 @@ ActiveRecord::Schema.define(version: 20141126222952) do
     t.integer  "stock"
   end
 
-  add_index "coupons", ["beacon_id"], name: "index_coupons_on_beacon_id", using: :btree
   add_index "coupons", ["store_id"], name: "index_coupons_on_store_id", using: :btree
 
   create_table "local_stores", force: true do |t|

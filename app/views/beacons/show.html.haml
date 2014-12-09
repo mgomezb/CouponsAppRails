@@ -1,21 +1,44 @@
 %p#notice= notice
 
-%p
-  %b Major:
-  = @beacon.major
-%p
-  %b Minor:
-  = @beacon.minor
-%p
-  %b Proximity uuid:
-  = @beacon.proximity_uuid
-%p
-  %b Description:
-  = @beacon.description
-%p
-  %b Local:
-  = @beacon.local.name
+.row
+  .col-sm-6
+    %h2 Beacon
+    %p
+      %b Major:
+      = @beacon.major
+    %p
+      %b Minor:
+      = @beacon.minor
+    %p
+      %b Proximity uuid:
+      = @beacon.proximity_uuid
+    %p
+      %b Description:
+      = @beacon.description
+    %p
+      %b Local:
+      = @beacon.local.name
 
-= link_to 'Edit', edit_local_beacon_path(@local, @beacon)
-\|
-= link_to 'Back', request.referer
+    = link_to 'Edit', edit_local_beacon_path(@local, @beacon)
+    \|
+    = link_to 'Back', request.referer
+
+  .col-sm-6
+    %h2 Todos los cupones
+
+    %table.table.all-users
+      %tr
+        %th
+        %th Imagen
+        %th Titulo
+        %th Fecha
+        %th Stock
+
+      - @coupons.each do |coupon|
+        %tr
+          %td= check_box_tag :coupon_id, coupon.id
+          %td= image_tag coupon.image.url, style:"width:150px"
+          %td= coupon.title
+          %td= coupon.end_date
+          %td= coupon.stock
+          %t

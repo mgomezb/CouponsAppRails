@@ -5,7 +5,9 @@ class Coupon < ActiveRecord::Base
   validate :valid_time_range
 
   has_many :user_coupons
+  has_many :beacon_coupons
   has_many :users, through: :user_coupons
+  has_many :beacons, through: :beacon_coupons
 
   def valid_time_range
   	if self.init_date.present? && self.end_date.present? && self.init_date > self.end_date

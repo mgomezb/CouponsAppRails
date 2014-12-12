@@ -1,27 +1,27 @@
 %p#notice= notice
 
+%h1 #{@beacon.description}
+
 .row
   .col-sm-6
-    %h2 Beacon
-    %p
-      %b Major:
-      = @beacon.major
-    %p
-      %b Minor:
-      = @beacon.minor
-    %p
-      %b Proximity uuid:
-      = @beacon.proximity_uuid
-    %p
-      %b Description:
-      = @beacon.description
-    %p
-      %b Local:
-      = @beacon.local.name
+    %h2 Cupones asociados
 
-    = link_to 'Edit', edit_local_beacon_path(@local, @beacon)
-    \|
-    = link_to 'Back', request.referer
+    %table.table.all-users
+      %tr
+        %th
+        %th Imagen
+        %th Titulo
+        %th Fecha
+        %th Stock
+
+      - @beacon.coupons.each do |coupon|
+        %tr
+          %td= check_box_tag :coupon_id, coupon.id
+          %td= image_tag coupon.image.url, style:"width:150px"
+          %td= coupon.title
+          %td= coupon.end_date
+          %td= coupon.stock
+          %t
 
   .col-sm-6
     %h2 Todos los cupones

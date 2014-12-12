@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128195219) do
+ActiveRecord::Schema.define(version: 20141209061841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20141128195219) do
   end
 
   add_index "beacons", ["local_id"], name: "index_beacons_on_local_id", using: :btree
+
+  create_table "beacons_coupons", force: true do |t|
+    t.integer "beacon_id"
+    t.integer "coupon_id"
+  end
+
+  create_table "beacons_notifications", force: true do |t|
+    t.integer "beacon_id"
+    t.integer "notification_id"
+  end
 
   create_table "coupons", force: true do |t|
     t.string   "title"
@@ -68,18 +78,15 @@ ActiveRecord::Schema.define(version: 20141128195219) do
 
   create_table "notifications", force: true do |t|
     t.string   "title"
-    t.string   "message"
+    t.text     "message"
     t.datetime "init_date"
     t.datetime "end_date"
     t.integer  "proximity_trigger_range"
-    t.integer  "store_id"
-    t.integer  "beacon_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "local_id"
+    t.string   "access_level"
   end
-
-  add_index "notifications", ["beacon_id"], name: "index_notifications_on_beacon_id", using: :btree
-  add_index "notifications", ["store_id"], name: "index_notifications_on_store_id", using: :btree
 
   create_table "stores", force: true do |t|
     t.string   "name"

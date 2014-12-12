@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :locals do
     resources :beacons
+    resources :notifications
     resources :stores do
       resources :coupons
     end

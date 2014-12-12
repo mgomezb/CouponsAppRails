@@ -5,23 +5,19 @@
 
 %table.table
   %tr
+    %th Description
     %th Major
     %th Minor
     %th Proximity uuid
-    %th Description
-    %th Local
-    %th
     %th
     %th
 
   - @beacons.each do |beacon|
     %tr
+      %td= link_to beacon.description, local_beacon_path(@local, beacon)
       %td= beacon.major
       %td= beacon.minor
       %td= beacon.proximity_uuid
-      %td= beacon.description
-      %td= beacon.local.name
-      %td= link_to 'Show', local_beacon_path(@local, beacon)
       %td= link_to 'Edit', edit_local_beacon_path(@local, beacon)
       %td= link_to 'Destroy', local_beacon_path(@local, beacon), :method => :delete, :data => { :confirm => '¿Estás seguro de eliminar este beacon?' }
 

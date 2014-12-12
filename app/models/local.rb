@@ -6,6 +6,8 @@ class Local < ActiveRecord::Base
 	has_many :stores
 	has_many :users, through: :user_locals
   	has_many :user_locals
+  	has_many :notifications
+
 
 	geocoded_by :address
 	after_validation :geocode

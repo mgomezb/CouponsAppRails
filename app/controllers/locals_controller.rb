@@ -7,10 +7,6 @@ class LocalsController < ApplicationController
     @locals = current_user.locals.order :name
   end
 
-  def is_worker?
-    current_user.type == 'admin'
-  end
-
   # GET /locals/1
   # GET /locals/1.json
   def show

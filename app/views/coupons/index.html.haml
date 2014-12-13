@@ -30,9 +30,15 @@
       %td= coupon.code
       %td= coupon.store.name
       %td= coupon.beacon
-      %td= link_to 'Show', local_store_coupon_path(@local, @store, coupon)
-      %td= link_to 'Edit', edit_local_store_coupon_path(@local, @store, coupon)
-      %td= link_to 'Destroy', local_store_coupon_path(@local, @store, coupon), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td
+        = link_to local_store_coupon_path(@local, @store, coupon) do
+          %i.fa.fa-eye{style: 'color: green'}
+      %td
+        = link_to edit_local_store_coupon_path(@local, @store, coupon) do
+          %i.fa.fa-edit{style: 'color: orange'}
+      %td
+        = link_to local_store_coupon_path(@local, @store, coupon), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+          %i.fa.fa-times{style: 'color: red'}
 
 %br
 

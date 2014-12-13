@@ -1,15 +1,6 @@
 %p#notice= notice
 
-%p
-  %b Tienda
-  = @store.name
-%p
-  %b Local:
-  = @store.local.name
-
-
-
-%h1 Cupones
+%h2 Cupones tienda #{@store.name} #{@store.local.name}
 
 = link_to 'Nuevo Coupon', new_local_store_coupon_path(@local, @store), class: 'btn btn-success'
 %p
@@ -35,5 +26,12 @@
       %td= coupon.access_level
       %td= coupon.proximity_trigger_range
       %td= coupon.code
-      %td= link_to 'Editar', edit_local_store_coupon_path(@local, @store, coupon)
-      %td= link_to 'Eliminar', local_store_coupon_path(@local, @store, coupon), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td
+        = link_to local_store_coupon_path(@local, @store, coupon) do
+          %i.fa.fa-eye{style: 'color: green'}
+      %td
+        = link_to edit_local_store_coupon_path(@local, @store, coupon) do
+          %i.fa.fa-edit{style: 'color: orange'}
+      %td
+        = link_to local_store_coupon_path(@local, @store, coupon), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+          %i.fa.fa-times{style: 'color: red'}

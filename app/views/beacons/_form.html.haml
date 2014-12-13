@@ -7,12 +7,12 @@
           %li= msg
 
   .field
+    = f.input :description
+  .field
     = f.input :major
   .field
     = f.input :minor
   .field
-    = f.input :proximity_uuid
-  .field
-    = f.input :description
+    = f.input :proximity_uuid, as: :hidden, input_html: {value: '6E42F68A-D0D1-467B-A23E-9D11FA746E43'}
   .actions
     = f.submit 'Guardar', class: 'btn btn-success'

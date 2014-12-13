@@ -1,5 +1,7 @@
 %p#notice= notice
 
+%td= image_tag @coupon.image.url, style:"width:300px"
+
 %p
   %b Title:
   = @coupon.title
@@ -22,18 +24,14 @@
   %b Proximity trigger range:
   = @coupon.proximity_trigger_range
 %p
-  %b Image:
-  = @coupon.image
-%p
   %b Code:
   = @coupon.code
 %p
   %b Store:
-  = @coupon.store
+  = @coupon.store.name
 %p
-  %b Beacon:
-  = @coupon.beacon
+  %b Stock:
+  = @coupon.stock
 
-= link_to 'Edit', edit_local_store_coupon_path(@coupon)
-\|
-= link_to 'Back', local_store_coupons_path
+= link_to 'Back', request.referer
+

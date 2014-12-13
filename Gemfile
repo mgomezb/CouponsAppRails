@@ -43,6 +43,8 @@ gem 'gmaps4rails', '~> 2.1.2'
 
 gem 'underscore-rails'
 
+gem 'font-awesome-rails'
+
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 

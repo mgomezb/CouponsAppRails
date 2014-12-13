@@ -18,8 +18,12 @@
       %td= beacon.major
       %td= beacon.minor
       %td= beacon.proximity_uuid
-      %td= link_to 'Edit', edit_local_beacon_path(@local, beacon)
-      %td= link_to 'Destroy', local_beacon_path(@local, beacon), :method => :delete, :data => { :confirm => '¿Estás seguro de eliminar este beacon?' }
+      %td
+        = link_to edit_local_beacon_path(@local, beacon) do
+          %i.fa.fa-edit{style: 'color: orange'}
+      %td
+        = link_to local_beacon_path(@local, beacon), :method => :delete, :data => { :confirm => '¿Estás seguro de eliminar este beacon?' } do
+          %i.fa.fa-times{style: 'color: red'}
 
 %br
 

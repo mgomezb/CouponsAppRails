@@ -8,13 +8,16 @@
     %th Name
     %th
     %th
-    %th
 
   - @stores.each do |store|
     %tr
       %td= link_to store.name, local_store_path(@local, store)
-      %td= link_to 'Editar', edit_local_store_path(@local, store)
-      %td= link_to 'Eliminar', local_store_path(@local, store), :method => :delete, :data => { :confirm => '¿Estás seguro?' }
+      %td
+        = link_to edit_local_store_path(@local, store) do
+          %i.fa.fa-edit{style: 'color: orange'}
+      %td
+        = link_to local_store_path(@local, store), :method => :delete, :data => { :confirm => '¿Estás seguro?' } do
+          %i.fa.fa-times{style: 'color: red'}
 
 %br
 

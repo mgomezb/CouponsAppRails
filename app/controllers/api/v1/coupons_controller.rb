@@ -5,7 +5,27 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 		coupons_list = []
 
 		beacons_list = []
+
+		notifications_list = []
+
 		@local = Local.find(params[:local_id])
+
+		@local.beacons.each do |beacon|
+			beacon_data= {
+				id: beacon.id,
+				major: beacon.major,
+				minor: beacon.minor,
+				proximity_uuid: beacon.proximity_uuid,
+				description: beacon.description,
+				local_id: beacon.local_id,
+				created_at: beacon.created_at,
+				updated_at: beacon.updated_at,
+				coupons: beacon.coupons,
+				notifications: beacon.notifications
+			}
+
+			beacons_list << beacon_data
+		end
 
 		@local.stores.each do |store|
 			store.coupons.each do |coupon|
@@ -23,7 +43,8 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 						store_id: coupon.store_id,
 						store_name: store.name,
 						image_url: coupon.image.url,
-						stock: coupon.stock
+						stock: coupon.stock,
+						category: coupon.category
 					}
 
 					coupons_list << coupon_data
@@ -31,11 +52,11 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 			end
 		end
 
-		@local.beacons.each do |beacon|
-			beacons_list << beacon
+		@local.notifications.each do |notification|
+			notifications_list << notification
 		end
 
-		response = { "coupons" => coupons_list , "beacons" => beacons_list }
+		response = {"beacons" => beacons_list, "coupons" => coupons_list , "notifications" => notifications_list }
 		render json: response
 	end
 

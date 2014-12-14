@@ -19,12 +19,15 @@
     = f.input :legal, label: 'Términos y condiciones', input_html: {rows: 3}
 
   .row
-    .col-sm-6
+    .col-sm-4
       .field
         = f.input :init_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Inicio'
-    .col-sm-6
+    .col-sm-4
       .field
         = f.input :end_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Fin'
+    .col-sm-4
+      .field
+        = f.input :category, collection: @categories, include_blank: false, label: 'Categoría'
 
   .row
     .col-sm-3

@@ -1,10 +1,12 @@
 class NotificationsController < ApplicationController
+  before_action :set_local
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = @local.notifications.order :title
+    @notification = @local.notifications.build
   end
 
   # GET /notifications/1
@@ -14,7 +16,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications/new
   def new
-    @notification = Notification.new
+    @notification = @local.notifications.build
   end
 
   # GET /notifications/1/edit
@@ -25,10 +27,11 @@ class NotificationsController < ApplicationController
   # POST /notifications.json
   def create
     @notification = Notification.new(notification_params)
+    @notification.local = @local
 
     respond_to do |format|
       if @notification.save
-        format.html { redirect_to @notification, notice: 'Notification was successfully created.' }
+        format.html { redirect_to local_notifications_path , notice: 'Notification was successfully created.' }
         format.json { render :show, status: :created, location: @notification }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class NotificationsController < ApplicationController
   def update
     respond_to do |format|
       if @notification.update(notification_params)
-        format.html { redirect_to @notification, notice: 'Notification was successfully updated.' }
+        format.html { redirect_to local_notifications_path, notice: 'Notification was successfully updated.' }
         format.json { render :show, status: :ok, location: @notification }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class NotificationsController < ApplicationController
   def destroy
     @notification.destroy
     respond_to do |format|
-      format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
+      format.html { redirect_to local_notifications_path, notice: 'Notification was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +67,15 @@ class NotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id])
+      @notification = @local.notifications.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.require(:notification).permit(:title, :message, :init_date, :end_date, :proximity_trigger_range, :store_id, :beacon_id)
+      params.require(:notification).permit(:title, :message, :init_date, :end_date, :proximity_trigger_range, :local_id, :access_level)
+    end
+
+    def set_local
+      @local = Local.find(params[:local_id])
     end
 end

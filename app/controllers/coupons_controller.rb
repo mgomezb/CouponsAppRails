@@ -17,11 +17,13 @@ class CouponsController < ApplicationController
 
   # GET /coupons/new
   def new
+    @categories = Category.all.order :name
     @coupon = @store.coupons.build
   end
 
   # GET /coupons/1/edit
   def edit
+    @categories = Category.all.order :name
   end
 
   # POST /coupons
@@ -76,7 +78,7 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:title, :message, :init_date, :end_date, :access_level, :legal, :proximity_trigger_range, :image, :code, :store_id, :stock)
+      params.require(:coupon).permit(:title, :message, :init_date, :end_date, :access_level, :legal, :proximity_trigger_range, :image, :code, :store_id, :stock, :category)
     end
 
     def set_store

@@ -1,15 +1,13 @@
-%h1 Listing notifications
+%h1 Notificaciones #{@local.name}
 
-%table
+%table.table
   %tr
-    %th Title
-    %th Message
-    %th Init date
-    %th End date
-    %th Proximity trigger range
-    %th Store
-    %th Beacon
-    %th
+    %th Título
+    %th Mensaje
+    %th Desde
+    %th Caduca
+    %th Proximidad
+    %th Tipo
     %th
     %th
 
@@ -17,15 +15,17 @@
     %tr
       %td= notification.title
       %td= notification.message
-      %td= notification.init_date
-      %td= notification.end_date
+      %td= l notification.init_date, format: :long
+      %td= l notification.end_date, format: :long
       %td= notification.proximity_trigger_range
-      %td= notification.store
-      %td= notification.beacon
-      %td= link_to 'Show', notification
-      %td= link_to 'Edit', edit_notification_path(notification)
-      %td= link_to 'Destroy', notification, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= notification.access_level
+      %td
+        = link_to edit_local_notification_path(@local, notification) do
+          %i.fa.fa-edit{style: 'color: orange'}
+      %td
+        = link_to local_notification_path(@local, notification), :method => :delete, :data => { :confirm => '¿Estás seguro de eliminar esta notificación?' } do
+          %i.fa.fa-times{style: 'color: red'}
 
 %br
 
-= link_to 'New Notification', new_notification_path
+= link_to 'Nueva Notificación', new_local_notification_path, class: 'btn btn-success'

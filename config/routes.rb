@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+
   resources :notifications
 
   resources :locals do
@@ -93,6 +95,9 @@ Rails.application.routes.draw do
         member do
           put 'claim_coupon'
         end
+      end
+
+      resources :categories, only: [:index] do
       end
     end
   end

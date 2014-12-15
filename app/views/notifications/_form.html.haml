@@ -7,9 +7,9 @@
           %li= msg
 
   .field
-    = f.input :title
+    = f.input :title, label: 'Título'
   .field
-    = f.input :message
+    = f.input :message, label: 'Mensaje', input_html: {rows: 3}
   .field
     = f.input :init_date, as: :string, input_html: {class: 'datetimepicker'}, label: 'Fecha de Inicio'
   .field

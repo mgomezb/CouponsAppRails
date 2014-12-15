@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @my_user = [current_user]
 
     @users = @local.users - @my_user
-    @all_users = User.all - @users - @my_user
+    @all_users = User.where(user_type: 'web') - @users - @my_user
   end
 
   private

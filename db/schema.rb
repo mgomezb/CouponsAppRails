@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214184410) do
+ActiveRecord::Schema.define(version: 20141216034053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141214184410) do
     t.datetime "image_updated_at"
     t.integer  "stock"
     t.integer  "category"
+    t.string   "use_instructions"
   end
 
   add_index "coupons", ["store_id"], name: "index_coupons_on_store_id", using: :btree

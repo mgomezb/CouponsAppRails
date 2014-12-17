@@ -13,15 +13,11 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 		@local.beacons.each do |beacon|
 			beacon_data= {
 				id: beacon.id,
-				major: beacon.major,
+				mayor: beacon.major,
 				minor: beacon.minor,
 				proximity_uuid: beacon.proximity_uuid,
-				description: beacon.description,
-				local_id: beacon.local_id,
-				created_at: beacon.created_at,
-				updated_at: beacon.updated_at,
-				coupons: beacon.coupons,
-				notifications: beacon.notifications
+				coupons_ids: beacon.coupons,
+				notifications_ids: beacon.notifications
 			}
 
 			beacons_list << beacon_data
@@ -38,6 +34,7 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 						end_date: coupon.end_date,
 						access_level: coupon.access_level,
 						legal: coupon.legal,
+						use_instructions: coupon.use_instructions,
 						proximity_trigger_range: coupon.proximity_trigger_range,
 						code: coupon.code,
 						store_id: coupon.store_id,

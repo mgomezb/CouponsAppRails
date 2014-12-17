@@ -17,6 +17,8 @@
     = f.input :message, label: 'Mensaje', input_html: {rows: 3}
   .field
     = f.input :legal, label: 'Términos y condiciones', input_html: {rows: 3}
+  .field
+    = f.input :use_instructions, label: 'Instrucciones de uso'
 
   .row
     .col-sm-4
@@ -35,7 +37,7 @@
         = f.input :stock
     .col-sm-3
       .field
-        = f.input :access_level, collection: ['Privado', 'Público'], include_blank: false, label: 'Tipo'
+        = f.input :access_level, collection: [['Privado', 'private'], ['Público', 'public']], include_blank: false, label: 'Tipo'
     .col-sm-3
       .field
         = f.input :proximity_trigger_range, collection: [['Lejos', '3'], ['Cerca', '2'], ['Muy Cerca', '1']], include_blank: false, label: 'Rango de captura'

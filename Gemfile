@@ -51,6 +51,8 @@ group :development, :test do
     gem 'railroady'
 end
 
+gem 'active_model_serializers', '~> 0.9.2'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

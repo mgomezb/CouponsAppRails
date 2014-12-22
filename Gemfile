@@ -52,6 +52,7 @@ group :development, :test do
 end
 
 gem 'active_model_serializers', '~> 0.9.2'
+gem 'rails_12factor'
 
 
 # Use ActiveModel has_secure_password

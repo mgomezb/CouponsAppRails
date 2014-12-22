@@ -1,6 +1,6 @@
 %h1 Categorías
 
-= link_to 'New Category', new_category_path, class: 'btn btn-success'
+= link_to 'Nueva Category', new_category_path, remote: true,  class: 'btn btn-success'
 %p
 
 %table.table
@@ -20,5 +20,16 @@
           %i.fa.fa-times{style: 'color: red'}
 
 %br
+
+#newCategoryModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newCategoryModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Crear categoría
+      .modal-body
+        = render 'categories/form'
 
 

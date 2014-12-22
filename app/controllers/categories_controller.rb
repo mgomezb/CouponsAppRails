@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   def index
     if current_user.user_type == 'admin'
       @categories = Category.all.order :name
+      @category = Category.new
     else
       redirect_to root_path
     end

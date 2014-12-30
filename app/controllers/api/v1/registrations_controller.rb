@@ -8,9 +8,9 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     @user = User.create(user_params)
     @user.user_type = 'mobile'
     if @user.save
-      render :json => {:state => {:code => 0}, :data => @user }
+      render :json => {:user => @user }
     else
-      render :json => {:state => {:code => 1, :messages => @user.errors.full_messages} }
+      render :json => {:state => {:code => 400, :messages => @user.errors.full_messages} }
     end
 
   end
@@ -18,6 +18,6 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :address, :rut, :name, :last_name, :gender)
   end
 end

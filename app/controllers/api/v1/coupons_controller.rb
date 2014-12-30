@@ -68,15 +68,15 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 				if @validate_coupon.save
 					@coupon_claim.stock = @coupon_claim.stock - 1
 					@coupon_claim.save
-					render status: 200, json: {message: "Cupon canjeado exitosamente"}
+					render status: 200, json: {status: 200, message: "Cupon canjeado exitosamente"}
 				else
-					render status: 406, json: {message: "Cupon canjeado anteriormente"}
+					render status: 200, json: {status: 406, message: "Cupon canjeado anteriormente"}
 				end
 			else
-				render status: 402, json: {message: "Cupon sin stock"}
+				render status: 200, json: {status: 402, message: "Cupon sin stock"}
 			end
 		else
-			render status: 404, json: {message: "Cupon no existe"}
+			render status: 200, json: {status: 404, message: "Cupon no existe"}
 		end
 		#render json: @coupon_claim
 		#respond_to do |format|

@@ -73,7 +73,7 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 					render status: 406, json: {message: "Cupon canjeado anteriormente"}
 				end
 			else
-				render status: 200, json: {message: "Cupon sin stock"}
+				render status: 402, json: {message: "Cupon sin stock"}
 			end
 		else
 			render status: 404, json: {message: "Cupon no existe"}

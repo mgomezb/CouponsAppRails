@@ -8,7 +8,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     @user = User.create(user_params)
     @user.user_type = 'mobile'
     if @user.save
-      render :json => {:user => @user }
+      render :json =>  @user
     else
       render :json => {:error => @user.errors.full_messages}
     end

@@ -10,7 +10,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     if @user.save
       render :json => {:user => @user }
     else
-      render :json => {:state => {:code => 400, :messages => @user.errors.full_messages} }
+      render :json => {:state => {:code => 400, :error => @user.errors.full_messages} }
     end
 
   end

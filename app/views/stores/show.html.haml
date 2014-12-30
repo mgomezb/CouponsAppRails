@@ -12,7 +12,7 @@
     %th Desde
     %th Hasta
     %th Tipo
-    %th Proximidad
+    %th Stock
     %th Code
     %th
     %th
@@ -24,7 +24,7 @@
       %td= l coupon.init_date, format: :long
       %td= l coupon.end_date, format: :long
       %td= coupon.access_level
-      %td= coupon.proximity_trigger_range
+      %td= coupon.stock
       %td= coupon.code
       %td
         = link_to local_store_coupon_path(@local, @store, coupon) do

@@ -14,11 +14,7 @@ class Api::V1::SessionsController < Devise::SessionsController
 
    respond_to do |format|
      format.json {
-       render :json => {
-         :user => current_user,
-         :status => :ok,
-         :authentication_token => current_user.authentication_token
-       }
+       render :json => current_user
      }
    end
   end

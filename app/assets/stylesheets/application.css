@@ -25,8 +25,7 @@ body{
  	margin: 0;
 }
 body.static{
-	/*background:url(http://lorempixel.com/1920/1080/fashion/) no-repeat;*/
-	background: url('background.png');
+	background: image-url('background.png');
  	background-size: cover;
 }
 html{

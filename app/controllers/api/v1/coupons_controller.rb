@@ -66,8 +66,7 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 				@validate_coupon = current_user.user_coupons.build coupon_id: @coupon_claim.id
 
 				if @validate_coupon.save
-					@coupon_claim.stock = @coupon_claim.stock - 1
-					@coupon_claim.save
+					@coupon_claim.update(stock: @coupon_claim.stock - 1)
 					render status: 200, json: {status: 200, message: "Cupon canjeado exitosamente"}
 				else
 					render status: 200, json: {status: 406, message: "Cupon canjeado anteriormente"}

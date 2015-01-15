@@ -1,12 +1,17 @@
 %p#notice= notice
 
-%h1 #{@beacon.description}
+%h1 Beacon #{@beacon.description}
+
+.text-center
+  #beacon-id{data: {id: @beacon.id}}
+  %button.btn.btn-success.add-coupon <
+  %button.btn.btn-danger.remove-coupon >
 
 .row
   .col-sm-6
     %h2 Cupones asociados
 
-    %table.table.all-users
+    %table.table.all-coupons
       %tr
         %th
         %th Imagen
@@ -26,7 +31,7 @@
   .col-sm-6
     %h2 Todos los cupones
 
-    %table.table.all-users
+    %table.table.all-coupons
       %tr
         %th
         %th Imagen

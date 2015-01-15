@@ -17,6 +17,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require user_locals
+//= require beacon_coupons
 //= require_self
 
 $(function () {

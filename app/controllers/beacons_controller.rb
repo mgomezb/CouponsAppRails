@@ -74,6 +74,37 @@ class BeaconsController < ApplicationController
     end
   end
 
+  def add_coupon_to_beacon
+    id = params[:coupon]
+    beacon = params[:beacon]
+
+    if beacon and id
+      coupon_beacon = Beacon.find(beacon).beacons_coupons.build coupon_id: id
+      coupon_beacon.save
+
+      render status: 200, json: {status: 200}
+    else
+      render status: 406, json: {status: 406}
+    end
+  end
+
+  def remove_coupon_from_beacon
+    id = params[:coupon]
+    beacon = params[:beacon]
+
+    if beacon and id
+      coupon_beacon = BeaconCoupon.where({coupon_id: id, beacon_id: beacon}).first
+
+      if coupon_beacon and coupon_beacon.destroy
+        render status: 200, json: {status: 200}
+      else
+        render status: 406, json: {status: 406}
+      end
+    else
+      render status: 406, json: {status: 406}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_beacon

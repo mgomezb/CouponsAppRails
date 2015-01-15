@@ -6,12 +6,14 @@
 %table.table
   %tr
     %th Name
+    %th Nº Cupones
     %th
     %th
 
   - @stores.each do |store|
     %tr
       %td= link_to store.name, local_store_path(@local, store)
+      %td= store.coupons.count
       %td
         = link_to edit_local_store_path(@local, store) do
           %i.fa.fa-edit{style: 'color: orange'}

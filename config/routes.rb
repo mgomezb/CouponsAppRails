@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :notifications
 
   resources :locals do
-    resources :beacons
+    resources :beacons do
+      member do
+        put 'add_coupon_to_beacon', as: 'add_coupon_to'
+        put 'remove_coupon_from_beacon', as: 'remove_coupon_from'
+      end
+    end
     resources :notifications
     resources :stores do
       resources :coupons
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
       put 'add_user_to_local', as: 'add_user_to'
       put 'remove_user_from_local', as: 'remove_user_from'
     end
+
   end
 
   devise_for :users, :controllers => { registrations: 'registrations' }

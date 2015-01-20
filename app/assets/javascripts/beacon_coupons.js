@@ -2,7 +2,9 @@
   $(function () {
 
     $('.add-coupon').on('click', function (e) {
+      debugger
       $('.all-coupons').find('input:checkbox:checked').each(function (idx, obj) {
+        debugger
         $.ajax({
           url: $('.all-coupons').data('url'),
           data: {beacon: $('#beacon-id').data('id'), coupon: parseInt(obj.value)},

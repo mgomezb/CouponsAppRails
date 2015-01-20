@@ -78,8 +78,9 @@ class BeaconsController < ApplicationController
     id = params[:coupon]
     beacon = params[:beacon]
 
+
     if beacon and id
-      coupon_beacon = Beacon.find(beacon).beacons_coupons.build coupon_id: id
+      coupon_beacon = Beacon.find(beacon).beacon_coupons.build coupon_id: id
       coupon_beacon.save
 
       render status: 200, json: {status: 200}
@@ -92,8 +93,9 @@ class BeaconsController < ApplicationController
     id = params[:coupon]
     beacon = params[:beacon]
 
+
     if beacon and id
-      coupon_beacon = BeaconCoupon.where({coupon_id: id, beacon_id: beacon}).first
+      coupon_beacon = BeaconCoupon.where({beacon_id: beacon, coupon_id: id}).first
 
       if coupon_beacon and coupon_beacon.destroy
         render status: 200, json: {status: 200}

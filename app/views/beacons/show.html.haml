@@ -11,7 +11,7 @@
   .col-sm-6
     %h2 Cupones asociados
 
-    %table.table.all-coupons
+    %table.table.beacon-coupons{data: {url: remove_coupon_from_local_beacon_path(@local, @beacon)}}
       %tr
         %th
         %th Imagen
@@ -31,7 +31,7 @@
   .col-sm-6
     %h2 Todos los cupones
 
-    %table.table.all-coupons
+    %table.table.all-coupons{data: {url: add_coupon_to_local_beacon_path(@local, @beacon)}}
       %tr
         %th
         %th Imagen

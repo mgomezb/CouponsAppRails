@@ -16,8 +16,8 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 				mayor: beacon.major,
 				minor: beacon.minor,
 				proximity_uuid: beacon.proximity_uuid,
-				coupons_ids: beacon.coupons,
-				notifications_ids: beacon.notifications
+				coupons_ids: beacon.coupons.pluck(:id),
+				notifications_ids: beacon.notifications.pluck(:id)
 			}
 
 			beacons_list << beacon_data

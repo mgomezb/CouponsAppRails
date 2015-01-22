@@ -15,11 +15,10 @@ class Coupon < ActiveRecord::Base
   	end
   end
 
-  has_attached_file :image
-
-  :storage => :dropbox,
-  :dropbox_credentials => "#{Rails.root}/config/dropbox.yml", :styles => { :medium => "300x300" , :thumb => "100x100>"}, :dropbox_options => 
-  { :path => proc { |style| "#{Rails.env}/#{style}/#{id}_#{picture.original_filename}"},       :unique_filename => true }
+  has_attached_file :image,
+    :storage => :dropbox,
+    :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
+    :dropbox_options => {environment: ENV["RACK_ENV"]}
 
   validates_attachment :image, presence: true, content_type: { content_type: ["image/png", "image/jpg", "image/jpeg", "image/bmp"] }
 end

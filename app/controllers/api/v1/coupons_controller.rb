@@ -39,7 +39,7 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 						code: coupon.code,
 						store_id: coupon.store_id,
 						store_name: store.name,
-						image_url: coupon.image.url,
+						image_url: coupon.image.url(:thumb),
 						stock: coupon.stock,
 						category: coupon.category
 					}

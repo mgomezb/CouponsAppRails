@@ -15,13 +15,15 @@
       %tr
         %th
         %th Titulo
+        %th Mensaje
         %th Fecha
 
       - @beacon.notifications.each do |notification|
         %tr
           %td= check_box_tag :notification_id, notification.id
           %td= notification.title
-          %td= notification.end_date
+          %td= notification.message
+          %td= l notification.end_date, format: :long
           %t
 
   .col-sm-6

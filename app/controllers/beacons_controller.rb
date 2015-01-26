@@ -22,7 +22,7 @@ class BeaconsController < ApplicationController
         end
       end
     end
-    @coupons - @beacon.coupons
+    @coupons = @coupons - @beacon.coupons
   end
 
   def add_notification

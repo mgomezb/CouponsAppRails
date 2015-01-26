@@ -33,7 +33,7 @@ class BeaconsController < ApplicationController
           @notifications << notification
       end
     end
-    @notifications - @beacon.notifications
+    @notifications = @notifications - @beacon.notifications
   end
 
   # GET /beacons/new
@@ -140,7 +140,7 @@ class BeaconsController < ApplicationController
 
 
     if beacon and id
-      notification_beacon = BeaconCoupon.where({beacon_id: beacon, notification_id: id}).first
+      notification_beacon = BeaconNotification.where({beacon_id: beacon, notification_id: id}).first
 
       if notification_beacon and notification_beacon.destroy
         render status: 200, json: {status: 200}

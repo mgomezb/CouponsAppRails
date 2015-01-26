@@ -1,6 +1,6 @@
 class BeaconsController < ApplicationController
   before_action :set_local
-  before_action :set_beacon, only: [:show, :edit, :update, :destroy]
+  before_action :set_beacon, only: [:show, :edit, :update, :destroy, :add_notification]
 
   # GET /beacons
   # GET /beacons.json
@@ -20,6 +20,16 @@ class BeaconsController < ApplicationController
         if coupon.end_date >= Time.new
           @coupons << coupon
         end
+      end
+    end
+  end
+
+  def add_notification
+    @notifications = []
+
+    @local.notifications.each do |notification|
+      if notification.end_date >= Time.new
+          @notifications << notification
       end
     end
   end
@@ -98,6 +108,39 @@ class BeaconsController < ApplicationController
       coupon_beacon = BeaconCoupon.where({beacon_id: beacon, coupon_id: id}).first
 
       if coupon_beacon and coupon_beacon.destroy
+        render status: 200, json: {status: 200}
+      else
+        render status: 406, json: {status: 406}
+      end
+    else
+      render status: 406, json: {status: 406}
+    end
+  end
+
+  def add_notification_to_beacon
+    id = params[:notification]
+    beacon = params[:beacon]
+
+
+    if beacon and id
+      notification_beacon = Beacon.find(beacon).beacon_notifications.build notification_id: id
+      notification_beacon.save
+
+      render status: 200, json: {status: 200}
+    else
+      render status: 406, json: {status: 406}
+    end
+  end
+
+  def remove_notification_from_beacon
+    id = params[:notification]
+    beacon = params[:beacon]
+
+
+    if beacon and id
+      notification_beacon = BeaconCoupon.where({beacon_id: beacon, notification_id: id}).first
+
+      if notification_beacon and notification_beacon.destroy
         render status: 200, json: {status: 200}
       else
         render status: 406, json: {status: 406}

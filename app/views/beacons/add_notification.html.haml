@@ -1,0 +1,43 @@
+%p#notice= notice
+
+%h1 Beacon #{@beacon.description}
+
+.text-center
+  #beacon-id{data: {id: @beacon.id}}
+  %button.btn.btn-success.add-notification <
+  %button.btn.btn-danger.remove-notification >
+
+.row
+  .col-sm-6
+    %h2 Notificaciones asociadas
+
+    %table.table.beacon-notifications{data: {url: remove_notification_from_local_beacon_path(@local, @beacon)}}
+      %tr
+        %th
+        %th Titulo
+        %th Fecha
+
+      - @beacon.notifications.each do |notification|
+        %tr
+          %td= check_box_tag :notification_id, notification.id
+          %td= notification.title
+          %td= notification.end_date
+          %t
+
+  .col-sm-6
+    %h2 Todas las notificaciones
+
+    %table.table.all-notifications{data: {url: add_notification_to_local_beacon_path(@local, @beacon)}}
+      %tr
+        %th
+        %th Titulo
+        %th Mensaje
+        %th Fecha
+
+      - @notifications.each do |notification|
+        %tr
+          %td= check_box_tag :notification_id, notification.id
+          %td= notification.title
+          %td= notification.message
+          %td= l notification.end_date, format: :long
+          %t

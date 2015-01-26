@@ -18,6 +18,7 @@
 //= require bootstrap-datetimepicker
 //= require user_locals
 //= require beacon_coupons
+//= require beacon_notifications
 //= require_self
 
 $(function () {

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       member do
         put 'add_coupon_to_beacon', as: 'add_coupon_to'
         put 'remove_coupon_from_beacon', as: 'remove_coupon_from'
+        put 'add_notification_to_beacon', as: 'add_notification_to'
+        get 'add_notification', as: 'add_notification'
+        put 'remove_notification_from_beacon', as: 'remove_notification_from'
       end
     end
     resources :notifications

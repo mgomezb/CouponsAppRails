@@ -22,6 +22,7 @@ class BeaconsController < ApplicationController
         end
       end
     end
+    @coupons - @beacon.coupons
   end
 
   def add_notification
@@ -32,6 +33,7 @@ class BeaconsController < ApplicationController
           @notifications << notification
       end
     end
+    @notifications - @beacon.notifications
   end
 
   # GET /beacons/new

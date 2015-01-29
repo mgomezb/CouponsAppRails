@@ -8,6 +8,8 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 
 		notifications_list = []
 
+		date = "2014-12-13 03:26:08"
+
 		@local = Local.find(params[:local_id])
 
 		@local.beacons.each do |beacon|
@@ -19,6 +21,9 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 				coupons_ids: beacon.coupons.pluck(:id),
 				notifications_ids: beacon.notifications.pluck(:id)
 			}
+			if date < beacon.updated_at
+				date = beacon.updated_at
+			end
 
 			beacons_list << beacon_data
 		end
@@ -43,6 +48,9 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 						stock: coupon.stock,
 						category: coupon.category
 					}
+					if date < coupon.updated_at
+						date = coupon.updated_at
+					end
 
 					coupons_list << coupon_data
 				end
@@ -50,10 +58,14 @@ class Api::V1::CouponsController < Api::V1::ApplicationController
 		end
 
 		@local.notifications.each do |notification|
+			if date < notification.updated_at
+				date = notification.updated_at
+			end
 			notifications_list << notification
 		end
 
-		response = {"beacons" => beacons_list, "coupons" => coupons_list , "notifications" => notifications_list }
+
+		response = {"version" => date, "beacons" => beacons_list, "coupons" => coupons_list , "notifications" => notifications_list }
 		render json: response
 	end
 

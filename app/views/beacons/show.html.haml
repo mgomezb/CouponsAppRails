@@ -22,7 +22,7 @@
       - @beacon.coupons.each do |coupon|
         %tr
           %td= check_box_tag :coupon_id, coupon.id
-          %td= image_tag coupon.image.url, style:"width:150px"
+          %td= image_tag coupon.image.url(:small), style:"width:150px"
           %td= coupon.title
           %td= coupon.end_date
           %td= coupon.stock

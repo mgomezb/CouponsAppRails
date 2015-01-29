@@ -19,7 +19,7 @@ class Coupon < ActiveRecord::Base
     :storage => :dropbox,
     :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
     :dropbox_options => {environment: ENV["RACK_ENV"]},
-    :styles => {:thumb => "600x600"}
+    :styles => {:thumb => "600x600", :small => "150x150"}
 
   validates_attachment :image, presence: true, content_type: { content_type: ["image/png", "image/jpg", "image/jpeg", "image/bmp"] }
 end

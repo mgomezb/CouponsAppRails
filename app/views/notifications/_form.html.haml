@@ -17,6 +17,6 @@
   .field
     = f.input :proximity_trigger_range, collection: [['Lejos', '3'], ['Cerca', '2'], ['Muy Cerca', '1']], include_blank: false, label: 'Rango de captura'
   .field
-    = f.input :access_level, collection: ['Privado', 'Público'], include_blank: false, label: 'Tipo'
+    = f.input :access_level, collection: [['Privado', 'private'], ['Público', 'public']], include_blank: false, label: 'Tipo'
   .actions
     = f.button :submit, 'Guardar', class: 'btn btn-success'

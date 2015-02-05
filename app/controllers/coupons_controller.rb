@@ -37,7 +37,7 @@ class CouponsController < ApplicationController
     respond_to do |format|
       if @coupon.valid?
         @coupon.save
-        #DateUpdate.new().save
+        DateUpdate.new().save
         format.html { redirect_to local_store_path(@local, @store) , notice: 'Coupon was successfully created.' }
         format.json { render :show, status: :created, location: @coupon }
       else
@@ -52,7 +52,7 @@ class CouponsController < ApplicationController
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
-        #DateUpdate.new().save
+        DateUpdate.new().save
         format.html { redirect_to local_store_path(@local, @store), notice: 'Coupon was successfully updated.' }
         format.json { render :show, status: :ok, location: @coupon }
       else
@@ -66,7 +66,7 @@ class CouponsController < ApplicationController
   # DELETE /coupons/1.json
   def destroy
     @coupon.destroy
-    #DateUpdate.new().save
+    DateUpdate.new().save
     respond_to do |format|
       format.html { redirect_to local_store_path(@local, @store), notice: 'Coupon was successfully destroyed.' }
       format.json { head :no_content }

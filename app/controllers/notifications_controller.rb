@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = @local.notifications.order :title
+    @notifications = @local.notifications.order('end_date DESC')
     @notification = @local.notifications.build
   end
 
@@ -31,6 +31,7 @@ class NotificationsController < ApplicationController
 
     respond_to do |format|
       if @notification.save
+        #DateUpdate.new().save
         format.html { redirect_to local_notifications_path , notice: 'Notification was successfully created.' }
         format.json { render :show, status: :created, location: @notification }
       else
@@ -45,6 +46,7 @@ class NotificationsController < ApplicationController
   def update
     respond_to do |format|
       if @notification.update(notification_params)
+        #DateUpdate.new().save
         format.html { redirect_to local_notifications_path, notice: 'Notification was successfully updated.' }
         format.json { render :show, status: :ok, location: @notification }
       else
@@ -58,6 +60,7 @@ class NotificationsController < ApplicationController
   # DELETE /notifications/1.json
   def destroy
     @notification.destroy
+    #DateUpdate.new().save
     respond_to do |format|
       format.html { redirect_to local_notifications_path, notice: 'Notification was successfully destroyed.' }
       format.json { head :no_content }

@@ -53,6 +53,7 @@ class BeaconsController < ApplicationController
 
     respond_to do |format|
       if @beacon.save
+        DateUpdate.new().save
         format.html { redirect_to local_beacons_path, notice: 'Beacon was successfully created.' }
         format.json { render :show, status: :created, location: @beacon }
       else
@@ -67,6 +68,7 @@ class BeaconsController < ApplicationController
   def update
     respond_to do |format|
       if @beacon.update(beacon_params)
+        DateUpdate.new().save
         format.html { redirect_to local_beacons_path, notice: 'Beacon was successfully updated.' }
         format.json { render :show, status: :ok, location: @beacon }
       else
@@ -80,6 +82,7 @@ class BeaconsController < ApplicationController
   # DELETE /beacons/1.json
   def destroy
     @beacon.destroy
+    DateUpdate.new().save
     respond_to do |format|
       format.html { redirect_to local_beacons_path, notice: 'Beacon was successfully destroyed.' }
       format.json { head :no_content }
@@ -94,7 +97,7 @@ class BeaconsController < ApplicationController
     if beacon and id
       coupon_beacon = Beacon.find(beacon).beacon_coupons.build coupon_id: id
       coupon_beacon.save
-
+      DateUpdate.new().save
       render status: 200, json: {status: 200}
     else
       render status: 406, json: {status: 406}
@@ -110,6 +113,7 @@ class BeaconsController < ApplicationController
       coupon_beacon = BeaconCoupon.where({beacon_id: beacon, coupon_id: id}).first
 
       if coupon_beacon and coupon_beacon.destroy
+        DateUpdate.new().save
         render status: 200, json: {status: 200}
       else
         render status: 406, json: {status: 406}
@@ -127,7 +131,7 @@ class BeaconsController < ApplicationController
     if beacon and id
       notification_beacon = Beacon.find(beacon).beacon_notifications.build notification_id: id
       notification_beacon.save
-
+      DateUpdate.new().save
       render status: 200, json: {status: 200}
     else
       render status: 406, json: {status: 406}
@@ -143,6 +147,7 @@ class BeaconsController < ApplicationController
       notification_beacon = BeaconNotification.where({beacon_id: beacon, notification_id: id}).first
 
       if notification_beacon and notification_beacon.destroy
+        DateUpdate.new().save
         render status: 200, json: {status: 200}
       else
         render status: 406, json: {status: 406}

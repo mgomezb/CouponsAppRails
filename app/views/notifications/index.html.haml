@@ -22,7 +22,6 @@
       - else
         %td{:class => "date_error"}
           = l notification.end_date, format: :long
-      %td= notification.proximity_trigger_range
       %td= notification.access_level
       %td
         = link_to edit_local_notification_path(@local, notification) do

@@ -19,7 +19,7 @@
 
   - @store.coupons.each do |coupon|
     %tr
-      %td= image_tag coupon.image.url(:thumb), style:"width:250px"
+      %td= image_tag coupon.image.url(:small), style:"width:250px"
       %td= coupon.title
       %td= l coupon.init_date, format: :long
       %td= l coupon.end_date, format: :long

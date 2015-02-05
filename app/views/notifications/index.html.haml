@@ -16,7 +16,12 @@
       %td= notification.title
       %td= notification.message
       %td= l notification.init_date, format: :long
-      %td= l notification.end_date, format: :long
+      - if notification.end_date >= Time.new
+        %td{:class => "date_ok"}
+          = l notification.end_date, format: :long
+      - else
+        %td{:class => "date_error"}
+          = l notification.end_date, format: :long
       %td= notification.proximity_trigger_range
       %td= notification.access_level
       %td

@@ -22,7 +22,12 @@
       %td= image_tag coupon.image.url(:small), style:"width:150px"
       %td= coupon.title
       %td= l coupon.init_date, format: :long
-      %td= l coupon.end_date, format: :long
+      - if coupon.end_date >= Time.new
+        %td{:class => "date_ok"}
+          = l coupon.end_date, format: :long
+      - else
+        %td{:class => "date_error"}
+          = l coupon.end_date, format: :long
       %td= coupon.access_level
       %td= coupon.stock
       %td= coupon.code
